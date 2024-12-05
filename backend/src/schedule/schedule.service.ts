@@ -7,7 +7,8 @@ export class ScheduleService {
   constructor(private readonly gameStatService: GameStatService) {} // GameStatService inyectado
 
   // Cron job que ejecuta la simulación cada 5 minutos
-  @Cron(CronExpression.EVERY_30_SECONDS)
+  //@Cron(CronExpression.EVERY_30_SECONDS)
+  @Cron(CronExpression.EVERY_5_MINUTES)
   async handleCron() {
     try {
       await this.gameStatService.simulateGameStat();
