@@ -45,7 +45,7 @@ A button allows exporting the report to a CSV file.
 ## Setup and Installation
 
 1. **Clone the Repository**:
-2. **Navigate to the `backend/` directory** 
+2. **Navigate to the `backend/` directory**
 3. **Install Dependencies**:
 4. **Create a `.env.local` file in the `backend/` directory with your MySQL credentials and the database name**:
 
@@ -59,22 +59,30 @@ A button allows exporting the report to a CSV file.
 
 5. **Start the Server**:
 
-   ```sh
+```
+   sh
    npm run start:dev
-   ```
+```
 
 6. **Open the Frontend**:
-   Install Dependencies
-   Navigate to the frontend folder and start the React application:
-   ```sh
+7. **Install Dependencies**
+8. **Create a `.env.local` file in the `frontend/` directory with your PORT and API_URL**:
+
+```
+   PORT=3001
+   API_URL=http://localhost:3000
+```
+
+9. **Navigate to the frontend folder and start the React application**:
+
+```
+   sh
    cd frontend
    npm install
    npm start
-   ```
+```
 
 ## Usage
 
 - Access the Swagger documentation at `http://localhost:3000/api`.
 - View the web report at `http://localhost:3001`.
-
-
