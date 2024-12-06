@@ -16,7 +16,7 @@ const PlayerTable: React.FC = () => {
     const interval = setInterval(() => {
       dispatch(fetchPlayers());
       dispatch(fetchLastUpdated());
-    }, 10000); // Actualizar cada 10 segundos
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [dispatch]);
@@ -36,7 +36,6 @@ const PlayerTable: React.FC = () => {
               <TableCell>Nickname</TableCell>
               <TableCell>Profile Image</TableCell>
               <TableCell>Score</TableCell>
-              <TableCell>Details</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -47,9 +46,6 @@ const PlayerTable: React.FC = () => {
                   <img src={player.profileImage} alt={player.nickname} style={{ width: '50px', borderRadius: '50%' }} />
                 </TableCell>
                 <TableCell>{player.score}</TableCell>
-                <TableCell>
-                  <a href={`/player/${player.playerId}`}>View Details</a>
-                </TableCell>
               </TableRow>
             ))}
           </TableBody>

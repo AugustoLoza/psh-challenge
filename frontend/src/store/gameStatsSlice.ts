@@ -23,14 +23,15 @@ const initialState: PlayersState = {
   status: 'idle',
 };
 
+const API_URL = process.env.API_URL || 'http://localhost:3000';
+
 export const fetchPlayers = createAsyncThunk('players/fetchPlayers', async () => {
-    const response = await axios.get('http://localhost:3000/report/top-scores');
+  const response = await axios.get(`${API_URL}/report/top-scores`);
   return response.data;
 });
 
 export const fetchLastUpdated = createAsyncThunk('players/fetchLastUpdated', async () => {
-  const response = await axios.get('http://localhost:3000/report/last-stats-time');
-  console.log(response)
+  const response = await axios.get(`${API_URL}/report/last-stats-time`);
   return response.data;
 });
 

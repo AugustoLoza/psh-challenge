@@ -5,6 +5,7 @@ import { GameStat } from './game-stat.entity';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { InternalServerErrorException } from '@nestjs/common';
 
 @Injectable()
 export class GameStatService {
@@ -15,31 +16,35 @@ export class GameStatService {
   ) {}
 
   async simulateGameStat() {
-    // Llamar a la API para obtener un nombre y una imagen aleatorios
+    // Call the API to get a random name and image
     try {
       const response = await lastValueFrom(
-        this.httpService.get('https://randomuser.me/api')
+        this.httpService.get('https://randomuser.me/api'),
       );
       const { name, picture } = response.data.results[0];
-      
-      const now = new Date();
-      const formattedDate = now.toISOString().replace('T', ' ').substring(0, 19);
-      // Crear una nueva estadística de juego
-      const newStat = this.gameStatRepository.create({
-        playerId: uuidv4(), // ID aleatorio de jugador
-        nickname: name.first, // Nickname aleatorio
-        profileImage: picture.large, // Imagen aleatoria
-        createdAt: formattedDate,
-        updatedAt: formattedDate,
-        score: Math.floor(Math.random() * 100) + 1, // Puntuación aleatoria entre 1 y 100
-      });
-  
-      // Guardar la estadística en la base de datos
-      return await this.gameStatRepository.save(newStat);
-    } 
-    catch (error) {
-      console.error('Error al simular la estadística de juego:', error);
-    }
-  } 
-}
 
+      const now = new Date();
+      const formattedDate = now
+        .toISOString()
+        .replace('T', ' ')
+        .substring(0, 19);
+      // Create a new game statistic
+      const newStat = this.gameStatRepository.create({
+        playerId: uuidv4(),
+        nickname: name.first,
+        profileImage: picture.large,
+        updatedAt: formattedDate,
+        createdAt: formattedDate,
+        score: Math.floor(Math.random() * 1000) + 1,
+      });
+
+      // Save the statistic in the database
+      return await this.gameStatRepository.save(newStat);
+    } catch (error) {
+      console.error('Error when simulating game statistics:', error.message);
+      throw new InternalServerErrorException(
+        'Error when simulating game statistics:',
+      );
+    }
+  }
+}
