@@ -16,7 +16,7 @@ Randomly insert game statistics into a MySQL database for 0 to 10 players with t
 - **Profile Image**: Random profile image (generated using [Random User API](https://randomuser.me/api)).
 - **Create Date**: Timestamp of when the stat was created.
 - **Update Date**: Timestamp of when the stat was created.
-- **Score**: Random score between 1 and 1000.
+- **Score**: Random score between 1 and 100.
 
 A cron job runs this operation every 5 minutes.
 

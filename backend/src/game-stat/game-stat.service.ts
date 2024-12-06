@@ -35,7 +35,7 @@ export class GameStatService {
         profileImage: picture.large,
         updatedAt: formattedDate,
         createdAt: formattedDate,
-        score: Math.floor(Math.random() * 1000) + 1,
+        score: Math.floor(Math.random() * 100) + 1,
       });
 
       // Save the statistic in the database
