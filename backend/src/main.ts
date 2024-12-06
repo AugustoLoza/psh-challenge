@@ -20,9 +20,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  // Enable CORS
   app.enableCors({
-    origin: 'http://localhost:3001',
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
@@ -38,10 +37,10 @@ async function bootstrap() {
 
   // Get the port from the environment variables
   const configService = app.get(ConfigService);
-  const port = configService.get<number>('PORT', 3000); // 3000 is the default value
+  const port = configService.get<number>('PORT', 3000); 
 
   // Log the port where the server is running using your custom logger
-  logger.logServerStartup(port); // Utiliza tu método para mostrar el puerto
+  logger.logServerStartup(port); 
 
   // Start the server
   await app.listen(port);
