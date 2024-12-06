@@ -23,7 +23,8 @@ const initialState: PlayersState = {
   status: 'idle',
 };
 
-const API_URL = process.env.API_URL || 'http://localhost:3000';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+
 
 export const fetchPlayers = createAsyncThunk('players/fetchPlayers', async () => {
   const response = await axios.get(`${API_URL}/report/top-scores`);
