@@ -70,7 +70,7 @@ A button allows exporting the report to a CSV file.
 
 ```
    PORT=3001
-   API_URL=http://localhost:3000
+   REACT_APP_API_URL=http://localhost:3000
 ```
 
 9. **Navigate to the frontend folder and start the React application**:
